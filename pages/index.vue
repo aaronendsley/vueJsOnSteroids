@@ -3,34 +3,33 @@
     <section class="intro">
       <h1>Get the latest Tech news</h1>
     </section>
-    <section class="featured-posts">
-      <PostPreview
-        id="1"
-        previewText="lol"
-        title="LOL"
-        thumbnail="https://techcrunch.com/wp-content/uploads/2015/04/codecode.jpg?w=1390&crop=1"
-      />
-      <PostPreview
-        id="1"
-        previewText="lol"
-        title="LOL"
-        thumbnail="https://techcrunch.com/wp-content/uploads/2015/04/codecode.jpg?w=1390&crop=1"
-      />
-      <PostPreview
-        id="1"
-        previewText="lol"
-        title="LOL"
-        thumbnail="https://techcrunch.com/wp-content/uploads/2015/04/codecode.jpg?w=1390&crop=1"
-      />
-    </section>
+    <PostList :posts="loadedPosts" />
   </div>
 </template>
 
 <script>
-import PostPreview from "../components/Posts/PostPreview";
 export default {
-  components: {
-    PostPreview
+  asyncData(context, callback) {
+    setTimeout(() => {
+      callback(null, {
+        loadedPosts: [
+          {
+            id: "1",
+            title: "first Post",
+            previewText: "lol",
+            thumbnail:
+              "https://storage.googleapis.com/afs-prod/media/afs:Medium:5511630073/1900.png"
+          },
+          {
+            id: "2",
+            title: "second Post",
+            previewText: "lol2",
+            thumbnail:
+              "https://storage.googleapis.com/afs-prod/media/afs:Medium:5511630073/1900.png"
+          }
+        ]
+      });
+    }, 1500);
   }
 };
 </script>

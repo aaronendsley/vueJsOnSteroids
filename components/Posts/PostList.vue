@@ -1,25 +1,13 @@
 <template>
   <section class="post-list">
     <PostPreview
-      id="1"
+      v-for="post in posts"
+      v-bind:key="post.key"
+      :id="post.id"
       :is-admin="isAdmin"
-      previewText="lol"
-      title="LOL"
-      thumbnail="https://techcrunch.com/wp-content/uploads/2015/04/codecode.jpg?w=1390&crop=1"
-    />
-    <PostPreview
-      id="2"
-      :is-admin="isAdmin"
-      previewText="lol"
-      title="LOL"
-      thumbnail="https://techcrunch.com/wp-content/uploads/2015/04/codecode.jpg?w=1390&crop=1"
-    />
-    <PostPreview
-      id="3"
-      :is-admin="isAdmin"
-      previewText="lol"
-      title="LOL"
-      thumbnail="https://techcrunch.com/wp-content/uploads/2015/04/codecode.jpg?w=1390&crop=1"
+      :previewText="post.previewText"
+      :title="post.title"
+      :thumbnail="post.thumbnail"
     />
   </section>
 </template>
@@ -30,6 +18,10 @@ export default {
     isAdmin: {
       type: Boolean,
       default: false
+    },
+    posts: {
+      type: Array,
+      required: true
     }
   }
 };

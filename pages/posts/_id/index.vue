@@ -1,12 +1,12 @@
 <template>
   <div class="single-post-page">
     <section class="post">
-      <h1 class="post-title">Title of the post</h1>
+      <h1 class="post-title">{{ loadedPost.title }}</h1>
       <div class="post-details">
-        <div>Last Updated on XXX</div>
-        <div>Written by NAME</div>
+        <div>Last Updated on {{ loadedPost.updatedDate }}</div>
+        <div>Written by {{ loadedPost.author }}</div>
       </div>
-      <p class="post-content">Content of the post</p>
+      <p class="post-content">{{ loadedPost.content }}</p>
       <section class="post-feedback">
         Let me know what you think of the post:
         <a href="mailTo:aaronendsley@gmail.com"> Mail</a>
@@ -16,7 +16,24 @@
 </template>
 
 <script>
-export default {};
+export default {
+  asyncData(context, callback) {
+    setTimeout(() => {
+      callback(null, {
+        loadedPost: {
+          id: "2",
+          title: "second Post " + context.params.id,
+          previewText: "lol2",
+          thumbnail:
+            "https://storage.googleapis.com/afs-prod/media/afs:Medium:5511630073/1900.png",
+          author: "bob",
+          updatedDate: new Date(),
+          content: "LOLLOLOLOLOLOLOLOLOLOLOLOL thats alot of laughter"
+        }
+      });
+    }, 1000);
+  }
+};
 </script>
 
 <style scoped>
